@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Sucursal</h2>
+        <!--targeta-->
+        <div class="card">
+            <div class="card-body">
+              <form action="/editarSucursal/" method="POST"> {% csrf_token %} <!-- falta action-->
+                <div class="form-group">
+                  <input type="text" id="txtcodigo" name="txtcodigo" class="form-control"
+                  value="{{missucursales.codigo}}"
+                  minlenght="1" maxLenght="6" readonly required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                  value="{{missucursales.direccion}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                  value="{{missucursales.telefono}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txthorario" name="txthorario" class="form-control"
+                  value="{{missucursales.horario}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                  value="{{missucursales.nombre}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtemail" name="txtemail" class="form-control"
+                  value="{{missucursales.email}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtciudad" name="txtciudad" class="form-control"
+                  value="{{missucursales.ciudad}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-2">
+                  <button type="submit" class="btn btn-primary">Editar Sucursal</button>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock%}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Producto</h2>
+        <!--targeta-->
+        <div class="card">
+            <div class="card-body">
+              <form action="/editarProducto/" method="POST"> {% csrf_token %} <!-- falta action-->
+                <div class="form-group">
+                  <input type="text" id="txtcodigo" name="txtcodigo" class="form-control"
+                  value="{{misproductos.codigo}}"
+                  minlenght="1" maxLenght="6" readonly required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                  value="{{misproductos.nombre}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtprecio" name="txtprecio" class="form-control"
+                  value="{{misproductos.precio}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtprod" name="txtprod" class="form-control"
+                  value="{{misproductos.tipoprod}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtdescripcion" name="txtdescripcion" class="form-control"
+                  value="{{misproductos.descripcion}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtlote" name="txtlote" class="form-control"
+                  value="{{misproductos.lote}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtmarca" name="txtmarca" class="form-control"
+                  value="{{misproductos.marca}}"  maxLenght="100" required>
+                </div>
+                <div class="form-group py-2">
+                  <button type="submit" class="btn btn-primary">Editar Producto</button>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock%}

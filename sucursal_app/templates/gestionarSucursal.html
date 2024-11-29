@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row">
+  <!-- La columna izquierda -->
+  <div class="col-sm-12 col-md-4 col-lg-4 xl-4">
+    <h1>Registrar Sucursal</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarSucursal/" method="POST"> 
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" id="txtcodigo" name="txtcodigo" class="form-control"
+            placeholder="Código Sucursal" minlength="1" maxlength="6" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+            placeholder="Direccion Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+            placeholder="telefono Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txthorario" name="txthorario" class="form-control"
+            placeholder="horario Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+            placeholder="nombre Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtemail" name="txtemail" class="form-control"
+            placeholder="Email Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtciudad" name="txtciudad" class="form-control"
+            placeholder="Ciudad Sucursal" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Sucursal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- La columna derecha -->
+<div class="col-sm-12 col-md-8 col-lg-8 xl-8">
+  <h1>Listado de Sucursal</h1>
+  <img class="w-50" src="{% static "img/dulceria.jpg" %}" alt="miguel" width="100" height="200"/>
+  <br>
+  <br>
+  <!-- Tabla -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Código</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Horario</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ciudad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in missucursales %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ m.codigo }}</td>
+        <td>{{ m.direccion }}</td>
+        <td>{{ m.telefono }}</td>
+        <td>{{ m.horario }}</td>
+        <td>{{ m.nombre}}</td>
+        <td>{{ m.email}}</td>
+        <td>{{ m.ciudad}}</td>
+        <td><a href="seleccionarSucursal/{{ m.codigo }}" class="btn btn-info">Editar</a></td> <!-- Corrected href -->
+        <td><a href="borrarSucursal/{{ m.codigo }}" class="btn btn-danger">Borrar</a></td> <!-- Corrected href -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% endblock %}

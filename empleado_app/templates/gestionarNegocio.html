@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+  {% load static %}
+<div class="row">
+  <!-- La columna izquierda -->
+  <div class="col-sm-12 col-md-4 col-lg-4 xl-4">
+    <h1>Registrar Empleado</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="registrarEmpleado/" method="POST"> 
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" id="txtcodigo" name="txtcodigo" class="form-control"
+            placeholder="Código Empleado" minlength="1" maxlength="6" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+            placeholder="Nombre Empleado" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtpuesto" name="txtpuesto" class="form-control"
+            placeholder="Puesto Empleado" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+            placeholder="Direccion Empleado" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+            placeholder="Telefono Empleado" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtemail" name="txtemail" class="form-control"
+            placeholder="Email Empleado" maxlength="100" required>
+          </div>
+          <div class="form-group py-3">
+            <input type="text" id="txtapellido" name="txtapellido" class="form-control"
+            placeholder="Apellido materia" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Empleado</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- La columna derecha -->
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8">
+    <h1>Listado de Empleados</h1>
+    <img class="w-50" src="{% static "img/inventario.jpg" %}" alt="miguel" width="100" height="200"/>
+    <br>
+    <br>
+    <!-- Tabla -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Código</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Puesto</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Email</th>
+          <th scope="col">Apellido</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in misnegocios %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ m.codigo }}</td>
+          <td>{{ m.nombre }}</td>
+          <td>{{ m.puesto }}</td>
+          <td>{{ m.direccion }}</td>
+          <td>{{ m.telefono }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.apellido }}</td>
+          <td><a href="seleccionarEmpleado/{{ m.codigo }}" class="btn btn-info">Editar</a></td> <!-- Corrected href -->
+          <td><a href="borrarEmpleado/{{ m.codigo }}" class="btn btn-danger">Borrar</a></td> <!-- Corrected href -->
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
